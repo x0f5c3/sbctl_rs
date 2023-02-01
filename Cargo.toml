@@ -1,0 +1,25 @@
+[package]
+name = "sbctl_rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.68"
+
+[dependencies.serde]
+version = "1.0.152"
+features = ["derive"]
+
+[dependencies.efivar]
+version = "*"
+features = ["store"]
+
+[dependencies.pickledb]
+version = "0.5.1"
+features = ["bincode"]
+
+[dependencies.clap]
+version = "*"
+features = ["cargo", "derive", "wrap_help"]
