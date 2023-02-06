@@ -2,7 +2,7 @@ use anyhow::{Context, Result};
 use pickledb::{PickleDb, PickleDbDumpPolicy, SerializationMethod};
 use serde::{Deserialize, Serialize};
 
-use std::path::PathBuf;
+use std::path::{PathBuf, Path};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub enum Microcode {
@@ -29,12 +29,21 @@ pub struct Bundles {
 }
 
 impl Bundles {
-    pub fn new(dbpath: PathBuf) -> Result<Bundles> {
+    pub fn new<P: AsRef<Path>>(dbpath: P) -> Result<Bundles> {
         let db = PickleDb::new(
-            dbpath.as_path(),
+            dbpath.as_ref(),
             PickleDbDumpPolicy::AutoDump,
             SerializationMethod::Bin,
         );
-        Ok(Bundles { db, dbpath })
+        Ok(Bundles { db, dbpath: dbpath.as_ref().to_path_buf() })
+    }
+
+    pub fn visit_all(&mut self, mut f: impl FnMut(&str, &mut Bundle) -> Result<()>) -> Result<()> {
+        for key in self.db.get_all(){
+            let mut bundle = self.db.get(&key).context("Failed to get bundle")?;
+            f(&key, &mut bundle)?;
+            self.db.set(&key, &bundle).context("Failed to set bundle")?;
+        }
+        Ok(())
     }
 }
