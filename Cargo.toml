@@ -7,6 +7,15 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.68"
+pkcs7 = "0.4.0-pre.0"
+
+
+[dependencies.picky]
+version = "7.0.0-rc.3"
+features = ["ssh", "wincert"]
+
+[dependencies.nix]
+version = "0.26.2"
 
 [dependencies.serde]
 version = "1.0.152"
