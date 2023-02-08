@@ -9,13 +9,38 @@ edition = "2021"
 anyhow = "1.0.68"
 pkcs7 = "0.4.0-pre.0"
 static_init = "1.0.3"
+num-traits = "0.2.15"
+rcgen = "0.10.0"
+
+[dependencies.secrecy]
+version = "0.8.0"
+features = ["bytes", "serde"]
+
+[dependencies.rust-embed]
+version = "6.4.2"
+features = ["actix", "compression", "include-exclude", "debug-embed"]
+
+[dependencies.time]
+version = "0.3.17"
+features = ["macros", "formatting", "parsing", "local-offset", "serde", "serde-human-readable"]
+
+[dependencies.rand]
+version = "0.8.5"
+
+[dependencies.num-bigint]
+version = "0.4.3"
+features = ["rand"]
 
 [dependencies.picky]
 version = "7.0.0-rc.3"
-features = ["ssh", "wincert"]
+features = ["ssh", "wincert", "time_conversion"]
 
 [dependencies.nix]
 version = "0.26.2"
+
+[dependencies.rsa]
+version = "0.8.1"
+features = ["pkcs5", "serde", "getrandom"]
 
 [dependencies.serde]
 version = "1.0.152"
