@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../sbctl"
+		},
+		{
+			"path": "../go-uefi"
+		}
+	]
+}

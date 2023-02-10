@@ -1,16 +1,8 @@
 use anyhow::{Context, Result};
 use nix::unistd::{access, AccessFlags};
-use num_bigint::{BigInt, BigUint, RandBigInt, Sign};
-use num_traits::Zero;
-use picky::hash::HashAlgorithm;
-use picky::signature::SignatureAlgorithm;
-use picky::x509::date::UtcDate;
-use picky::x509::extension::KeyUsage;
-use picky::x509::Cert;
 use rcgen::{Certificate, KeyUsagePurpose};
 use rust_embed::RustEmbed;
 use static_init::dynamic;
-use std::ops::{Add, Shl};
 use std::path::PathBuf;
 
 #[derive(RustEmbed)]
